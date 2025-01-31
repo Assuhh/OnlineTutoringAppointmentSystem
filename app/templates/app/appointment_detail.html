@@ -1,0 +1,11 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block content %}
+
+        <div class="appointment-entry">
+            <h2><a href="">{{appointment.appointment}}</a></h2>
+            <p>{{appointment.subject}}</p>
+        </div>
+        <a href="{% url 'appointment_update' appointment.pk %}">+ Edit Appointment</a>
+        <a href="{% url 'appointment_delete' appointment.pk %}">- Delete Appointment</a>
+{% endblock content %}

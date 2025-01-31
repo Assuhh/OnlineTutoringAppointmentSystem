@@ -1,0 +1,84 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block content %}
+    <h1>New Appointment</h1>
+    <form action="{% url 'appointment_create' %}" method="post">
+        {% csrf_token %}
+        <div>
+            <label for="id_appointment">Appointment:</label>
+            <input type="text" id="id_appointment" name="appointment">
+            {% for error in form.appointment.errors %}
+                <small style="color: red">{{ error }}</small>
+            {% endfor %}
+        </div>
+        <div>
+            <label for="id_user">User:</label>
+            <select id="id_user" name="user">
+                {% for user in users %}
+                <option value="{{user.pk}}" {% if user.pk == form.user.value %} selected {% endif %}>
+                    {{user}}
+                </option>
+                {% endfor %}
+            </select>
+            {% for error in form.user.errors %}
+                <small style="color: red">{{ error }}</small>
+            {% endfor %}
+        </div>
+        <div>
+            <label for="id_subject">Subject:</label>
+            <textarea type="text" id="id_subject" name="subject"></textarea>
+            {% for error in form.subject.errors %}
+                <small style="color: red">{{ error }}</small>
+            {% endfor %}
+        </div>
+        <div>
+            <label for="id_rating">Rating:</label>
+            <input type="number" id="id_rating" name="rating">
+            {% for error in form.rating.errors %}
+                <small style="color: red">{{ error }}</small>
+            {% endfor %}
+        </div>
+        <div>
+            <label for="id_pub_date">Publication Date:</label>
+            <input type="date" id="id_pub_date" name="pub_date">
+            {% for error in form.pub_date.errors %}
+                <small style="color: red">{{ error }}</small>
+            {% endfor %}
+        </div>
+        <div>
+            <label for="id_price">Price:</label>
+            <input type="number" id="id_price" name="price">
+            {% for error in form.price.errors %}
+                <small style="color: red">{{ error }}</small>
+            {% endfor %}
+        </div>
+        <div>
+            <label for="id_student">Student(s):</label>
+            <select id="id_student" name="student" multiple>
+                {% for student in students %}
+                <option value="{{student.pk}}" {% if student.pk == form.student.value %} selected {% endif %}>
+                    {{student.first_name}} {{student.last_name}}
+                </option>
+                {% endfor %}
+            </select>
+            {% for error in form.student.errors %}
+                <small style="color: red">{{ error }}</small>
+            {% endfor %}
+        </div>
+        <div>
+            <label for="id_tutor">Tutor:</label>
+            <select id="id_tutor" name="tutor">
+                {% for tutor in tutors %}
+                <option value="{{tutor.pk}}" {% if tutor.pk == form.tutor.value %} selected {% endif %}>
+                    {{tutor.name}}
+                </option>
+                {% endfor %}
+            </select>
+            {% for error in form.tutor.errors %}
+                <small style="color: red">{{ error }}</small>
+            {% endfor %}
+        </div>
+        <input type="submit" value="Save">
+    </form>
+
+{% endblock content %}

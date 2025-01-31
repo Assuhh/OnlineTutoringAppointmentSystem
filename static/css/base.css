@@ -1,8 +1,64 @@
 h1 {
-    color: #4ac1f7;
+    /*color: darkred;*/
+    /*font-size: 80px;*/
+    /*font-style: italic;*/
+
+    font-size: calc(1.0em + 2.5vw);
+	font-weight: 700;
+	letter-spacing: .01em;
+	text-shadow: .022em .022em .022em #111;
+	color: #011638;
+    margin-top: calc(1.0em + 3.5vw);
 }
 
+body {
+    background-color: #94B0DA;
+}
 .mylogo {
-    height: 300px;
-    width: auto;
+    height: 280px;
+    width: 100%;
+    margin-top: 40px;
+    display: block;
+    padding-top: 20px;
+}
+
+header {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 30px;
+    background-color: #EDF7F6;
+    padding: 15px;
+}
+
+a {
+    box-shadow: inset 0 0 0 0 #BFC0C0;
+  color: #011638;
+  margin: 0 -.25rem;
+  padding: 0 .25rem;
+  transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
+    text-decoration: none;
+    font-size: 40px;
+    position: relative;
+}
+
+a:hover {
+    /*background-color: lightgrey;*/
+    box-shadow: inset 100px 0 0 0 #011638;
+    color: #C0C0C0;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    margin: 20px 0px 20px 0px;
+}
+
+footer {
+    background: #79aec8;
+    padding: 20px;
+    text-align: center;
+}
+
+footer p {
+    color: black;
 }

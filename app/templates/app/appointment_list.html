@@ -1,0 +1,66 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block content %}
+<a href="{% url 'appointment_create' %}">+ New Appointment</a>
+<br>
+<form method="get" action="{% url 'appointment' %}">
+    <label>
+        <input type="text" name="q" placeholder="search for appointment..." value="{{search.query}}">
+    </label>
+    <button type="button">Search</button>
+</form>
+<table>
+    <thead>
+    <tr>
+        <th>Appointment</th>
+        <th>Subject</th>
+        <th>Rating</th>
+        <th>Publication Date</th>
+        <th>Price</th>
+        <th>Student</th>
+        <th>Tutor</th>
+        <th>Added by</th>
+        <th>View</th>
+        <th>Update</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for appointment in appointments %}
+        <tr>
+            <td>{{appointment.appointment}}</td>
+            <td>{{appointment.subject}}</td>
+            <td>{{appointment.rating}}</td>
+            <td>{{appointment.pub_date | date:"M d, Y"}}</td>
+            <td>{{appointment.price}}</td>
+            <td>
+                {% for student in appointment.student.all %}
+                {{student.first_name}} {{student.last_name}}
+                {% endfor %}
+            </td>
+            <td>{{appointment.tutor.name}}</td>
+            <td>{{appointment.user}}</td>
+            <td><a href="{% url 'appointment_detail' appointment.pk %}">View</a></td>
+            <td><a href="{% url 'appointment_update' appointment.pk %}">Update</a></td>
+            <td><a href="{% url 'appointment_delete' appointment.pk %}">Delete</a></td>
+        </tr>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="8">No appointments found.</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+    <tfoot>
+    <tr>
+        <td>Total</td>
+        <td colspan="3">{{total_appointments}}</td>
+        <td>{{sum_appointment_price}}</td>
+        <td>{{total_students}}</td>
+        <td>{{total_tutors}}</td>
+        <td>{{total_users}}</td>
+    </tr>
+    </tfoot>
+</table>
+
+{% endblock content %}
